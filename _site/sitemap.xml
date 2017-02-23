@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://localhost:3000/</loc>
+    <lastmod>2017-02-23T14:52:50+01:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+    <url>
+      <loc>http://localhost:3000/2016/03/10/swap-out-your-appdelegate-for-testing/</loc>
+      
+        <lastmod>2016-03-10T00:00:00+01:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>http://localhost:3000/2016/03/06/who-am-i/</loc>
+      
+        <lastmod>2016-03-06T00:00:00+01:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+  
+  <url>
+    <loc>http://localhost:3000/404/</loc>
+    
+      <lastmod>2017-02-23T14:52:50+01:00</lastmod>
+    
+    
+      <changefreq>monthly</changefreq>
+    
+    
+      <priority>0.3</priority>
+    
+  </url>
+  
+  <url>
+    <loc>http://localhost:3000/atom.xml</loc>
+    
+      <lastmod>2017-02-23T14:52:50+01:00</lastmod>
+    
+    
+      <changefreq>monthly</changefreq>
+    
+    
+      <priority>0.3</priority>
+    
+  </url>
+  
+  <url>
+    <loc>http://localhost:3000/about/</loc>
+    
+      <lastmod>2017-02-23T14:52:50+01:00</lastmod>
+    
+    
+      <changefreq>monthly</changefreq>
+    
+    
+      <priority>0.3</priority>
+    
+  </url>
+  
+  <url>
+    <loc>http://localhost:3000/projects/</loc>
+    
+      <lastmod>2017-02-23T14:52:50+01:00</lastmod>
+    
+    
+      <changefreq>monthly</changefreq>
+    
+    
+      <priority>0.3</priority>
+    
+  </url>
+  
+  <url>
+    <loc>http://localhost:3000/</loc>
+    
+      <lastmod>2017-02-23T14:52:50+01:00</lastmod>
+    
+    
+      <changefreq>monthly</changefreq>
+    
+    
+      <priority>0.3</priority>
+    
+  </url>
+  
+  <url>
+    <loc>http://localhost:3000/sitemap.xml</loc>
+    
+      <lastmod>2017-02-23T14:52:50+01:00</lastmod>
+    
+    
+      <changefreq>monthly</changefreq>
+    
+    
+      <priority>0.3</priority>
+    
+  </url>
+  
+</urlset>

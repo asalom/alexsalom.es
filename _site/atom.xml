@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  
+    <title type="text" xml:lang="en">a dev's journal</title>
+    <link type="application/atom+xml" rel="self" href="http://localhost:3000/atom.xml"/>
+  
+  <link href="http://localhost:3000/"/>
+  <id>http://localhost:3000/</id>
+  <updated>2017-02-23T14:52:50Z</updated>
+  <author>
+    <name>Alex Salom</name>
+    <email></email>
+  </author>
+  <rights type="text">Copyright © 2017 Alex Salom. All rights reserved.</rights>
+  
+  <entry>
+  <title type="text">Swap out your App Delegate for testing</title>
+  <link rel="alternate" type="text/html" href="http://localhost:3000/2016/03/10/swap-out-your-appdelegate-for-testing/" />
+  <id>http://localhost:3000/2016/03/10/swap-out-your-appdelegate-for-testing</id>
+  <published>2016-03-10T00:00:00Z</published>
+  <updated>2016-03-10T00:00:00Z</updated>
+  <content type="html"><![CDATA[ <p>The best thing about unit testing is the ability to know if our production code works as expected without having to tap around in the Simulator. It is crucial that we receive this feedback fast so we can run the test suite as much as possible. That is even more important when we are practicing <strong>TDD</strong>.</p>
+
+<p>While running our tests, Xcode firstly launches the app in the simulator like if we were normally running it and thus having the site effect of executing any code we may have in our App Delegate and initial View Controller.</p>
+
+<h3 id="faster-please">Faster, please</h3>
+<p>One thing that can slow our tests down is if our App performs expensive tasks on startup and it is not unusual to place code that synchronizes with a server in our implementation of <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/">UIAppDelegate</a>.</p>
+
+<p>Luckily for us there is a way to change the production App Delegate with a <em>fake</em> that does nothing.</p>
+
+<h3 id="changing-the-app-delegate">Changing the App Delegate</h3>
+<p>First head to your <strong>AppDelegate.swift</strong> file. You’ll notice that there is an attribute <code class="highlighter-rouge">@UIApplicationMain</code> which you’ll need to <strong>delete</strong>.</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">@UIApplicationMain</span>
+<span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
+  <span class="c1">// Many expensive tasks</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<blockquote>
+  <p><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Attributes.html">NSApplicationMain</a></p>
+
+  <p>Apply this attribute to a class to indicate that it is the application delegate. Using this attribute is equivalent to calling the NSApplicationMain(::) function and passing this class’s name as the name of the delegate class.
+If you do not use this attribute, supply a main.swift file with a main() function that calls the NSApplicationMain(::) function. For example, if your app uses a custom subclass of NSApplication as its principal class, call the NSApplicationMain function instead of using this attribute.</p>
+</blockquote>
+
+<p>Next step is to add a new file and name it <code class="highlighter-rouge">main.swift</code>. This will give us a way to inject our <em>fake</em>.</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">FakeAppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">window</span><span class="p">:</span> <span class="kt">UIWindow</span><span class="p">?</span>
+
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span>
+    <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">window</span><span class="p">?</span><span class="o">.</span><span class="n">rootViewController</span> <span class="o">=</span> <span class="kt">UIViewController</span><span class="p">()</span>
+    <span class="k">return</span> <span class="kc">true</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">isRunningTests</span> <span class="o">=</span> <span class="kt">NSClassFromString</span><span class="p">(</span><span class="s">"XCTestCase"</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">nil</span>
+
+<span class="k">if</span> <span class="n">isRunningTests</span> <span class="p">{</span>
+  <span class="kt">UIApplicationMain</span><span class="p">(</span><span class="kt">Process</span><span class="o">.</span><span class="n">argc</span><span class="p">,</span> <span class="kt">Process</span><span class="o">.</span><span class="n">unsafeArgv</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="kt">NSStringFromClass</span><span class="p">(</span><span class="kt">FakeAppDelegate</span><span class="p">))</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="kt">UIApplicationMain</span><span class="p">(</span><span class="kt">Process</span><span class="o">.</span><span class="n">argc</span><span class="p">,</span> <span class="kt">Process</span><span class="o">.</span><span class="n">unsafeArgv</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="kt">NSStringFromClass</span><span class="p">(</span><span class="kt">AppDelegate</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<p>You may notice that not only we did inject a fake <em>App Delegate</em> but also have overrode <code class="highlighter-rouge">application: didFinishLaunchingWithOptions</code> setting an empty <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIViewController_Class/">UIViewController</a> so we avoid too any expensive initialization tasks our real root View Controller may perform.</p>
+
+<p>That’s all there is to it.</p>
+ ]]></content>
+</entry>
+
+
+  <entry>
+  <title type="text">Who am I?</title>
+  <link rel="alternate" type="text/html" href="http://localhost:3000/2016/03/06/who-am-i/" />
+  <id>http://localhost:3000/2016/03/06/who-am-i</id>
+  <published>2016-03-06T00:00:00Z</published>
+  <updated>2016-03-06T00:00:00Z</updated>
+  <content type="html"><![CDATA[ <p>My name is Alex Salom and I currently serve as an iOS Engineer at <strong>WeltN24 GmbH</strong> in Berlin, Germany.</p>
+
+<p>This website has gone through many incarnations and the one you are seeing is the latest. Previously I went for complex CMSes in horrible and expensive hosting companies. That has changed.
+What you are seeing now is the awesome <a href="https://jekyllrb.com/">Jekyll</a> with a modified theme called <a href="https://github.com/biomadeira/sustain">Sustain</a>.</p>
+
+<blockquote>
+  <p>Jekyll allows you to build blog aware static websites letting you focus on the content instead of the management.</p>
+</blockquote>
+
+<p>What should you expect from this site? Swift, iOS, tech stuff -books included-, code, maybe some music too… just the mumbles you would hear if you were working next to me.</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">Person</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">who</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">"Alex Salom"</span>
+  <span class="p">}</span>
+  <span class="kd">func</span> <span class="nf">wo</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">"Berlin, Germany."</span>
+  <span class="p">}</span>
+  <span class="kd">func</span> <span class="nf">what</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s">"code"</span><span class="p">,</span> <span class="s">"music"</span><span class="p">,</span> <span class="s">"ci"</span><span class="p">,</span> <span class="s">"ios"</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="welcome">Welcome</h2>
+ ]]></content>
+</entry>
+
+
+
+</feed>
