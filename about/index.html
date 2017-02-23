@@ -1,0 +1,22 @@
+---
+layout: page
+title: About
+---
+
+<section id="about">
+	<div class="container">
+	  <div class="avatar">
+	  	<a href="http://twitter.com/{{ site.twitter.username }}">
+			<img class="img-circle" src="{{ site.baseurl }}/static/img/{{ site.avatar }}" alt="Responsive image">
+			<h2>@{{ site.twitter.username }}</h2>
+		</a>
+	  </div>
+	  <hr/>
+	  <h3>I'm <strong>{{ site.author }}</strong>, a Software Engineer.</h3>
+	  <h3>I talk <strong>Swift</strong> and <strong>Objective-C</strong>. <strong>iOS</strong> is my passion.</h3>
+	  <h3>I will understand you in <strong>English</strong>, <strong>Spanish</strong> and <strong>Catalan</strong>.</h3>
+	  <h3><strike>Probably</strike> auch auf <strong>Deutsch</strong>.</h3>
+	  <h3>Have a look at some of the <a href="{{ site.baseurl }}/projects"> projects</a> I worked in.</h3>
+	  {% include social.html %}
+	</div>
+</section>

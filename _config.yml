@@ -1,0 +1,39 @@
+# top level stuff you probably don't need to touch
+#highlighter: pygments
+#markdown: rdiscount
+markdown: kramdown
+highlighter: rouge
+#rdiscount:
+#  extensions: [smart]
+paginate: 5
+paginate_path: "/:num/"
+#paginate_path: "/blog/page:num/"
+gems:
+  - jekyll-paginate
+  - jekyll-seo-tag
+port: 3000
+permalink: pretty
+#safe: true
+
+
+# edit here to achieve your personal greatness
+url: "http://127.0.0.1:3000"
+baseurl: ""
+avatar: profile.jpg
+image: https://alexsalom.es/static/img/profile.jpg
+github: asalom # username
+linkedin: alexsalom
+stackoverflow: users/1266056/alex-salom   #e.g: users/2735833/proton1h1
+#Comment out if you don't want disqus
+disqus: alexsalom
+google_analytics: UA-42771965-1
+exclude: ["_posts/examples"]
+title: a dev's journal
+author: Alex Salom
+description: This is the blog and personal site of Alex Salom, a professional iOS developer with a background in Software Engineer. iOS, Swift, TDD, Unit Testing, tech stuff and code. That's what you'll find here.
+twitter:
+  username: empatiia
+logo: https://alexsalom.es/static/img/profile.jpg
+
+# needed for travis-ci build
+#exclude: [vendor]
