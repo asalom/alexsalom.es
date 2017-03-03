@@ -3,6 +3,7 @@ layout: post
 title:  Dependency Injection with Service Locator
 tags:
 - Swift
+- Unit Testing
 - Dependency Injection
 - Blog
 ---
