@@ -10,8 +10,8 @@
   <!-- Begin Jekyll SEO tag v2.1.0 -->
 <title>Dependency Injection with Service Locator - a dev’s journal</title>
 <meta property="og:title" content="Dependency Injection with Service Locator" />
-<meta name="description" content="Here at WeltN24 we like to test. We like it so much that we build our code to be almost 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values." />
-<meta property="og:description" content="Here at WeltN24 we like to test. We like it so much that we build our code to be almost 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values." />
+<meta name="description" content="Here at WeltN24’s iOS team we like to test. We like it so much that we build our code to be almost 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values. The Swift Programming Language You can define a default value for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function." />
+<meta property="og:description" content="Here at WeltN24’s iOS team we like to test. We like it so much that we build our code to be almost 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values. The Swift Programming Language You can define a default value for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function." />
 <link rel="canonical" href="https://alexsalom.es/2017/03/03/dependency-injection-with-service-locator/" />
 <meta property="og:url" content="https://alexsalom.es/2017/03/03/dependency-injection-with-service-locator/" />
 <meta property="og:site_name" content="a dev’s journal" />
@@ -25,7 +25,7 @@
 "@type": "BlogPosting",
 "headline": "Dependency Injection with Service Locator",
 "datePublished": "2017-03-03T00:00:00+01:00",
-"description": "Here at WeltN24 we like to test. We like it so much that we build our code to be almost 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values.",
+"description": "Here at WeltN24’s iOS team we like to test. We like it so much that we build our code to be almost 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values. The Swift Programming Language You can define a default value for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function.",
 "publisher": {"@type": "Organization",
 "logo": {"@type": "ImageObject",
 "url": "https://alexsalom.es/static/img/profile.jpg"}},
@@ -135,7 +135,12 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<div class="blogpost">
-			  <p>Here at <a href="http://welt.de">WeltN24</a> we like to test. We like it so much that we build our code to be <del>almost</del> 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values.</p>
+			  <p>Here at <a href="http://welt.de">WeltN24</a>’s iOS team we like to test. We like it so much that we build our code to be <del>almost</del> 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values.</p>
+<blockquote>
+  <p><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html">The Swift Programming Language</a></p>
+
+  <p>You can define a default value for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function.</p>
+</blockquote>
 
 <div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">hello</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Alex Salom"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
   <span class="k">return</span> <span class="s">"Hello </span><span class="se">\(</span><span class="n">name</span><span class="se">)</span><span class="s">"</span>
@@ -233,6 +238,8 @@
 <code class="highlighter-rouge">ServiceLocatorImpl</code> doesn’t need to provide any implementation because each one of the Locators have provided an extension to every method they declare. We just found a way to inject as many dependencies as we want by declaring only one variable at <code class="highlighter-rouge">PeopleManager</code>’s initializer. Since all the dependencies use protocols and the locators are protocols themselves we could now build our own version of ServiceLocator that returns mocked objects and inject those from the tests.</p>
 
 <p>Schönes Wochenende!</p>
+
+<p>PS. <a href="https://github.com/asalom/alexsalom.es/tree/master/_code/2017-03-03-dependency-injection-with-service-locator">Get the code here</a>.</p>
 
 			   <hr>
 			   <div class="related-posts">

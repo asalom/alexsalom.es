@@ -8,7 +8,10 @@ tags:
 - Blog
 ---
 
-Here at <a href="http://welt.de">WeltN24</a> we like to test. We like it so much that we build our code to be ~~almost~~ 100% testable. We are able to achieve this by injecting all dependencies through each class' initializer. One technic to do this is to make use of Swift's default values.
+Here at <a href="http://welt.de">WeltN24</a>'s iOS team we like to test. We like it so much that we build our code to be ~~almost~~ 100% testable. We are able to achieve this by injecting all dependencies through each class' initializer. One technic to do this is to make use of Swift's default values.
+><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html">The Swift Programming Language</a>
+>
+> You can define a default value for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function.
 
 ```swift
 func hello(name: String = "Alex Salom") -> String {
@@ -106,3 +109,5 @@ We start by declaring a ```typealias ServiceLocator``` with all the dependencies
 ```ServiceLocatorImpl``` doesn't need to provide any implementation because each one of the Locators have provided an extension to every method they declare. We just found a way to inject as many dependencies as we want by declaring only one variable at ```PeopleManager```'s initializer. Since all the dependencies use protocols and the locators are protocols themselves we could now build our own version of ServiceLocator that returns mocked objects and inject those from the tests.
 
 Schönes Wochenende!
+
+PS. <a href="https://github.com/asalom/alexsalom.es/tree/master/_code/2017-03-03-dependency-injection-with-service-locator">Get the code here</a>.
