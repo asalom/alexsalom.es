@@ -15,25 +15,31 @@ port: 3000
 permalink: pretty
 #safe: true
 
+exclude:
+  - CNAME
+  - Gemfile*
+  - README.md
+  - LICENSE
+  - _posts/examples
+
 
 # edit here to achieve your personal greatness
-url: "https://alexsalom.es"
-baseurl: ""
+#url: "https://alexsalom.es"
+#baseurl: ""
 avatar: profile.jpg
-image: https://alexsalom.es/static/img/profile.jpg
+image: /static/img/profile.jpg
 github: asalom # username
 linkedin: alexsalom
 stackoverflow: users/1266056/alex-salom   #e.g: users/2735833/proton1h1
 #Comment out if you don't want disqus
 disqus: alexsalom
 google_analytics: UA-42771965-1
-exclude: ["_posts/examples"]
 title: a dev's journal
 author: Alex Salom
 description: This is the blog and personal site of Alex Salom, a professional iOS developer with a background in Software Engineering.
 twitter:
   username: empatiia
-logo: https://alexsalom.es/static/img/profile.jpg
+logo: /static/img/profile.jpg
 
 # needed for travis-ci build
 #exclude: [vendor]

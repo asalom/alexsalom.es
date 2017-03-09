@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://alexsalom.es/</loc>
-    <lastmod>2017-03-09T13:52:13+01:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2017-03-09T14:40:26+01:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   
     <url>
-      <loc>https://alexsalom.es/2017/03/03/dependency-injection-with-service-locator/</loc>
+      <loc>/2017/03/03/dependency-injection-with-service-locator/</loc>
       
         <lastmod>2017-03-03T00:00:00+01:00</lastmod>
       
@@ -21,7 +21,7 @@
     </url>
   
     <url>
-      <loc>https://alexsalom.es/2016/03/10/swap-out-your-appdelegate-for-testing/</loc>
+      <loc>/2016/03/10/swap-out-your-appdelegate-for-testing/</loc>
       
         <lastmod>2016-03-10T00:00:00+01:00</lastmod>
       
@@ -34,7 +34,7 @@
     </url>
   
     <url>
-      <loc>https://alexsalom.es/2016/03/06/who-am-i/</loc>
+      <loc>/2016/03/06/who-am-i/</loc>
       
         <lastmod>2016-03-06T00:00:00+01:00</lastmod>
       
@@ -48,22 +48,9 @@
   
   
   <url>
-    <loc>https://alexsalom.es/404/</loc>
+    <loc>/404/</loc>
     
-      <lastmod>2017-03-09T13:52:13+01:00</lastmod>
-    
-    
-      <changefreq>monthly</changefreq>
-    
-    
-      <priority>0.3</priority>
-    
-  </url>
-  
-  <url>
-    <loc>https://alexsalom.es/atom.xml</loc>
-    
-      <lastmod>2017-03-09T13:52:13+01:00</lastmod>
+      <lastmod>2017-03-09T14:40:26+01:00</lastmod>
     
     
       <changefreq>monthly</changefreq>
@@ -74,22 +61,9 @@
   </url>
   
   <url>
-    <loc>https://alexsalom.es/about/</loc>
+    <loc>/atom.xml</loc>
     
-      <lastmod>2017-03-09T13:52:13+01:00</lastmod>
-    
-    
-      <changefreq>monthly</changefreq>
-    
-    
-      <priority>0.3</priority>
-    
-  </url>
-  
-  <url>
-    <loc>https://alexsalom.es/projects/</loc>
-    
-      <lastmod>2017-03-09T13:52:13+01:00</lastmod>
+      <lastmod>2017-03-09T14:40:26+01:00</lastmod>
     
     
       <changefreq>monthly</changefreq>
@@ -100,9 +74,9 @@
   </url>
   
   <url>
-    <loc>https://alexsalom.es/</loc>
+    <loc>/about/</loc>
     
-      <lastmod>2017-03-09T13:52:13+01:00</lastmod>
+      <lastmod>2017-03-09T14:40:26+01:00</lastmod>
     
     
       <changefreq>monthly</changefreq>
@@ -113,9 +87,35 @@
   </url>
   
   <url>
-    <loc>https://alexsalom.es/sitemap.xml</loc>
+    <loc>/projects/</loc>
     
-      <lastmod>2017-03-09T13:52:13+01:00</lastmod>
+      <lastmod>2017-03-09T14:40:26+01:00</lastmod>
+    
+    
+      <changefreq>monthly</changefreq>
+    
+    
+      <priority>0.3</priority>
+    
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    
+      <lastmod>2017-03-09T14:40:26+01:00</lastmod>
+    
+    
+      <changefreq>monthly</changefreq>
+    
+    
+      <priority>0.3</priority>
+    
+  </url>
+  
+  <url>
+    <loc>/sitemap.xml</loc>
+    
+      <lastmod>2017-03-09T14:40:26+01:00</lastmod>
     
     
       <changefreq>monthly</changefreq>

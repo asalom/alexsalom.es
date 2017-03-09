@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   
     <title type="text" xml:lang="en">a dev's journal</title>
-    <link type="application/atom+xml" rel="self" href="https://alexsalom.es/atom.xml"/>
+    <link type="application/atom+xml" rel="self" href="/atom.xml"/>
   
-  <link href="https://alexsalom.es/"/>
-  <id>https://alexsalom.es/</id>
-  <updated>2017-03-09T13:52:13Z</updated>
+  <link href="/"/>
+  <id>/</id>
+  <updated>2017-03-09T14:40:26Z</updated>
   <author>
     <name>Alex Salom</name>
     <email></email>
@@ -15,8 +15,8 @@
   
   <entry>
   <title type="text">Dependency Injection with Service Locator</title>
-  <link rel="alternate" type="text/html" href="https://alexsalom.es/2017/03/03/dependency-injection-with-service-locator/" />
-  <id>https://alexsalom.es/2017/03/03/dependency-injection-with-service-locator</id>
+  <link rel="alternate" type="text/html" href="/2017/03/03/dependency-injection-with-service-locator/" />
+  <id>/2017/03/03/dependency-injection-with-service-locator</id>
   <published>2017-03-03T00:00:00Z</published>
   <updated>2017-03-03T00:00:00Z</updated>
   <content type="html"><![CDATA[ <p>Here at <a href="http://welt.de">WeltN24</a>’s iOS team we like to test. We like it so much that we build our code to be <del>almost</del> 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values.</p>
@@ -130,8 +130,8 @@
 
   <entry>
   <title type="text">Swap out your App Delegate for testing</title>
-  <link rel="alternate" type="text/html" href="https://alexsalom.es/2016/03/10/swap-out-your-appdelegate-for-testing/" />
-  <id>https://alexsalom.es/2016/03/10/swap-out-your-appdelegate-for-testing</id>
+  <link rel="alternate" type="text/html" href="/2016/03/10/swap-out-your-appdelegate-for-testing/" />
+  <id>/2016/03/10/swap-out-your-appdelegate-for-testing</id>
   <published>2016-03-10T00:00:00Z</published>
   <updated>2016-03-10T00:00:00Z</updated>
   <content type="html"><![CDATA[ <p>The best thing about unit testing is the ability to know if our production code works as expected without having to tap around in the Simulator. It is crucial that we receive this feedback fast so we can run the test suite as much as possible. That is even more important when we are practicing <strong>TDD</strong>.</p>
@@ -197,8 +197,8 @@ If you do not use this attribute, supply a main.swift file with a main() functio
 
   <entry>
   <title type="text">Who am I?</title>
-  <link rel="alternate" type="text/html" href="https://alexsalom.es/2016/03/06/who-am-i/" />
-  <id>https://alexsalom.es/2016/03/06/who-am-i</id>
+  <link rel="alternate" type="text/html" href="/2016/03/06/who-am-i/" />
+  <id>/2016/03/06/who-am-i</id>
   <published>2016-03-06T00:00:00Z</published>
   <updated>2016-03-06T00:00:00Z</updated>
   <content type="html"><![CDATA[ <p>My name is Alex Salom and I currently serve as an iOS Engineer at <strong>WeltN24 GmbH</strong> in Berlin, Germany.</p>
