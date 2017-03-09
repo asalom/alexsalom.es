@@ -30,7 +30,7 @@ google_analytics: UA-42771965-1
 exclude: ["_posts/examples"]
 title: a dev's journal
 author: Alex Salom
-description: This is the blog and personal site of Alex Salom, a professional iOS developer with a background in Software Engineer. iOS, Swift, TDD, Unit Testing, tech stuff and code. That's what you'll find here.
+description: This is the blog and personal site of Alex Salom, a professional iOS developer with a background in Software Engineering.
 twitter:
   username: empatiia
 logo: https://alexsalom.es/static/img/profile.jpg
