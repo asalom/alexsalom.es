@@ -21,6 +21,7 @@ exclude:
   - README.md
   - LICENSE
   - _posts/examples
+  - vendor
 
 
 # edit here to achieve your personal greatness

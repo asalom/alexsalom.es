@@ -110,4 +110,4 @@ We start by declaring a ```typealias ServiceLocator``` with all the dependencies
 
 Schönes Wochenende!
 
-<a href="https://github.com/asalom/alexsalom.es/tree/master/_code/2017-03-03-dependency-injection-with-service-locator">Get the code here</a>.
+<a href="https://github.com/asalom/alexsalom.es/tree/master/_code/2017-03-03-dependency-injection-with-service-locator">Get the code here</a>
