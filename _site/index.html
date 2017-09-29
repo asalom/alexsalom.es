@@ -7,27 +7,21 @@
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Alex Salom" />
   <meta name="keywords" content="ios, engineer, developer, tech, tdd, unit testing, code, clean code" />
-  <!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Alex Salom - a dev’s journal</title>
+  <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>Alex Salom | a dev’s journal</title>
 <meta property="og:title" content="Alex Salom" />
+<meta name="author" content="Alex Salom" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="This is the blog and personal site of Alex Salom, a professional iOS developer with a background in Software Engineering." />
 <meta property="og:description" content="This is the blog and personal site of Alex Salom, a professional iOS developer with a background in Software Engineering." />
-<link rel="canonical" href="/" />
-<meta property="og:url" content="/" />
+<link rel="canonical" href="http://localhost:3000/" />
+<meta property="og:url" content="http://localhost:3000/" />
 <meta property="og:site_name" content="a dev’s journal" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@empatiia" />
 <meta name="twitter:creator" content="@Alex Salom" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "WebSite",
-"name": "a dev’s journal",
-"headline": "Alex Salom",
-"description": "This is the blog and personal site of Alex Salom, a professional iOS developer with a background in Software Engineering.",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "/static/img/profile.jpg"}},
-"url": "/"}</script>
+{"name":"a dev’s journal","description":"This is the blog and personal site of Alex Salom, a professional iOS developer with a background in Software Engineering.","author":{"@type":"Person","name":"Alex Salom"},"@type":"WebSite","url":"http://localhost:3000/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:3000/static/img/profile.jpg"},"name":"Alex Salom"},"image":null,"headline":"Alex Salom","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -117,13 +111,30 @@
 			<div class="row">
 				 <div class="col-sm-4 col-md-4 col-lg-4">
 					 <h5 style="text-align: right">
+					 	September 29, 2017
+					 </h5>
+				 </div>
+				 <div class="col-sm-8 col-md-8 col-lg-8">
+					 <h5 style="text-align: left;">
+					 	<strong><a href="/2017/09/29/localize+strings+extension/">Localize strings more beautifully with an extension</a></strong>
+					 	<div><p>If you’ve worked in an App that has multiple languages you’d probably have learn to <del>hate</del> love Apple’s localization API <code class="highlighter-rouge">NSLocalizedString</code>. We just want a localize some strings but instead we are forced to provide a comment which in most cases we’ll just pass in <code class="highlighter-rouge">nil</code>.</p> <blockquote> <p>Checkout the documentation <a href="https://developer.apple.com/documentation/foundation/nslocalizedstring">here</a>.</p> </blockquote> <p>I’ve been using for a while a small <code class="highlighter-rouge">String</code> extension to shorten the wording while keeping the API flexible for different scenarios. Let’s go straight to the point and show some <a href="https://gist.github.com/asalom/cfade69708bf300c479bea614f39bc41">snippets</a> with...</div>
+					 </h5>
+					 <div style="text-align: right;"><a href="/2017/09/29/localize+strings+extension/">Read more...</a></div>
+				 </div>
+
+			</div>
+			<hr>
+	    
+			<div class="row">
+				 <div class="col-sm-4 col-md-4 col-lg-4">
+					 <h5 style="text-align: right">
 					 	March  3, 2017
 					 </h5>
 				 </div>
 				 <div class="col-sm-8 col-md-8 col-lg-8">
 					 <h5 style="text-align: left;">
 					 	<strong><a href="/2017/03/03/dependency-injection-with-service-locator/">Dependency Injection with Service Locator</a></strong>
-					 	<div><p>Here at <a href="http://welt.de">WeltN24</a>’s iOS team we like to test. We like it so much that we build our code to be <del>almost</del> 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values.</p> <blockquote> <p><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html">The Swift Programming Language</a></p> <p>You can define a default value for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function.</p> </blockquote> <div class="language-swift highlighter-rouge"><pre...</div>
+					 	<div><p>Here at <a href="http://welt.de">WeltN24</a>’s iOS team we like to test. We like it so much that we build our code to be <del>almost</del> 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values.</p> <blockquote> <p><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html">The Swift Programming Language</a></p> <p>You can define a default value for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit...</div>
 					 </h5>
 					 <div style="text-align: right;"><a href="/2017/03/03/dependency-injection-with-service-locator/">Read more...</a></div>
 				 </div>
@@ -140,7 +151,7 @@
 				 <div class="col-sm-8 col-md-8 col-lg-8">
 					 <h5 style="text-align: left;">
 					 	<strong><a href="/2016/03/10/swap-out-your-appdelegate-for-testing/">Swap out your App Delegate for testing</a></strong>
-					 	<div><p>The best thing about unit testing is the ability to know if our production code works as expected without having to tap around in the Simulator. It is crucial that we receive this feedback fast so we can run the test suite as much as possible. That is even more important when we are practicing <strong>TDD</strong>.</p> <p>While running our tests, Xcode firstly launches the app in the simulator like if we were normally running it and thus having the site effect of executing any code we may have in our App Delegate and initial View Controller.</p> <h3 id="faster-please">Faster, please</h3> <p>One...</div>
+					 	<div><p>The best thing about unit testing is the ability to know if our production code works as expected without having to tap around in the Simulator. It is crucial that we receive this feedback fast so we can run the test suite as much as possible. That is even more important when we are practicing <strong>TDD</strong>.</p> <p>While running our tests, Xcode firstly launches the app in the simulator like if we were normally running it and thus having the site effect of executing any code we may have in our...</div>
 					 </h5>
 					 <div style="text-align: right;"><a href="/2016/03/10/swap-out-your-appdelegate-for-testing/">Read more...</a></div>
 				 </div>
@@ -157,7 +168,7 @@
 				 <div class="col-sm-8 col-md-8 col-lg-8">
 					 <h5 style="text-align: left;">
 					 	<strong><a href="/2016/03/06/who-am-i/">Who am I?</a></strong>
-					 	<div><p>My name is Alex Salom and I currently serve as an iOS Engineer at <strong>WeltN24 GmbH</strong> in Berlin, Germany.</p> <p>This website has gone through many incarnations and the one you are seeing is the latest. Previously I went for complex CMSes in horrible and expensive hosting companies. That has changed. What you are seeing now is the awesome <a href="https://jekyllrb.com/">Jekyll</a> with a modified theme called <a href="https://github.com/biomadeira/sustain">Sustain</a>.</p> <blockquote> <p>Jekyll allows you to build blog aware static websites letting you focus on the content instead of the management.</p> </blockquote> <p>What should you expect from this site? Swift, iOS, tech stuff -books...</div>
+					 	<div><p>My name is Alex Salom and I currently serve as an iOS Engineer at <strong>WeltN24 GmbH</strong> in Berlin, Germany.</p> <p>This website has gone through many incarnations and the one you are seeing is the latest. Previously I went for complex CMSes in horrible and expensive hosting companies. That has changed. What you are seeing now is the awesome <a href="https://jekyllrb.com/">Jekyll</a> with a modified theme called <a href="https://github.com/biomadeira/sustain">Sustain</a>.</p> <blockquote> <p>Jekyll allows you to build blog aware static websites letting you focus on the content instead of the management.</p> </blockquote> <p>What should...</div>
 					 </h5>
 					 <div style="text-align: right;"><a href="/2016/03/06/who-am-i/">Read more...</a></div>
 				 </div>
