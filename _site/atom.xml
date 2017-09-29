@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   
     <title type="text" xml:lang="en">a dev's journal</title>
-    <link type="application/atom+xml" rel="self" href="/atom.xml"/>
+    <link type="application/atom+xml" rel="self" href="http://localhost:3000/atom.xml"/>
   
-  <link href="/"/>
-  <id>/</id>
-  <updated>2017-03-09T14:40:26Z</updated>
+  <link href="http://localhost:3000/"/>
+  <id>http://localhost:3000/</id>
+  <updated>2017-09-29T15:06:49Z</updated>
   <author>
     <name>Alex Salom</name>
     <email></email>
@@ -14,9 +14,71 @@
   <rights type="text">Copyright © 2017 Alex Salom. All rights reserved.</rights>
   
   <entry>
+  <title type="text">Localize strings more beautifully with an extension</title>
+  <link rel="alternate" type="text/html" href="http://localhost:3000/2017/09/29/localize+strings+extension/" />
+  <id>http://localhost:3000/2017/09/29/localize+strings+extension</id>
+  <published>2017-09-29T00:00:00Z</published>
+  <updated>2017-09-29T00:00:00Z</updated>
+  <content type="html"><![CDATA[ <p>If you’ve worked in an App that has multiple languages you’d probably have learn to <del>hate</del> love Apple’s localization API <code class="highlighter-rouge">NSLocalizedString</code>. We just want a localize some strings but instead we are forced to provide a comment which in most cases we’ll just pass in <code class="highlighter-rouge">nil</code>.</p>
+
+<blockquote>
+  <p>Checkout the documentation <a href="https://developer.apple.com/documentation/foundation/nslocalizedstring">here</a>.</p>
+</blockquote>
+
+<p>I’ve been using for a while a small <code class="highlighter-rouge">String</code> extension to shorten the wording while keeping the API flexible for different scenarios. Let’s go straight to the point and show some <a href="https://gist.github.com/asalom/cfade69708bf300c479bea614f39bc41">snippets</a> with the implementation and usage.</p>
+
+<h3 id="implementation">Implementation:</h3>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">String</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="kd">func</span> <span class="nf">localize</span><span class="p">(</span><span class="n">tableName</span> <span class="nv">tableName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">bundle</span><span class="p">:</span> <span class="kt">NSBundle</span> <span class="o">=</span> <span class="kt">NSBundle</span><span class="o">.</span><span class="nf">mainBundle</span><span class="p">(),</span> <span class="nv">comment</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kt">NSLocalizedString</span><span class="p">(</span>
+      <span class="k">self</span><span class="p">,</span>
+      <span class="nv">tableName</span><span class="p">:</span> <span class="n">tableName</span><span class="p">,</span>
+      <span class="nv">bundle</span><span class="p">:</span> <span class="n">bundle</span><span class="p">,</span>
+      <span class="nv">value</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+      <span class="nv">comment</span><span class="p">:</span> <span class="n">comment</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="usage">Usage:</h3>
+
+<p>Basic:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"MENU"</span><span class="o">.</span><span class="nf">localize</span><span class="p">()</span>
+<span class="s">"MENU"</span><span class="o">.</span><span class="nf">localize</span><span class="p">(</span><span class="nv">comment</span><span class="p">:</span> <span class="s">"Menu title"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Or if you have other <code class="highlighter-rouge">Localizable.strings</code> files:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"MENU"</span><span class="o">.</span><span class="nf">localize</span><span class="p">(</span><span class="nv">tableName</span><span class="p">:</span> <span class="s">"SomeOtherLocalizable"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Or if you are in a different target:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"MENU"</span><span class="o">.</span><span class="nf">localize</span><span class="p">(</span><span class="nv">tableName</span><span class="p">:</span> <span class="s">"SomeOtherLocalizableAndTarget"</span><span class="p">,</span> <span class="nv">bundle</span><span class="p">:</span> <span class="kt">NSBundle</span><span class="p">(</span><span class="nv">forClass</span><span class="p">:</span> <span class="kt">DummyClass</span><span class="o">.</span><span class="k">self</span><span class="p">))</span>
+<span class="o">...</span>
+<span class="kd">private</span> <span class="kd">class</span> <span class="kt">DummyClass</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>In the last example I find it useful to just create another extension inside of the target were the <code class="highlighter-rouge">Localizable.strings</code> file is located.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">String</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">localizeTargetX</span><span class="p">(</span><span class="nv">comment</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nf">localize</span><span class="p">(</span><span class="nv">tableName</span><span class="p">:</span> <span class="s">"TargetXLocalizable"</span><span class="p">,</span> <span class="nv">bundle</span><span class="p">:</span> <span class="kt">Bundle</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="kt">DummyClass</span><span class="o">.</span><span class="k">self</span><span class="p">),</span> <span class="nv">comment</span><span class="p">:</span> <span class="n">comment</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">private</span> <span class="kd">class</span> <span class="kt">DummyClass</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
+ ]]></content>
+</entry>
+
+
+  <entry>
   <title type="text">Dependency Injection with Service Locator</title>
-  <link rel="alternate" type="text/html" href="/2017/03/03/dependency-injection-with-service-locator/" />
-  <id>/2017/03/03/dependency-injection-with-service-locator</id>
+  <link rel="alternate" type="text/html" href="http://localhost:3000/2017/03/03/dependency-injection-with-service-locator/" />
+  <id>http://localhost:3000/2017/03/03/dependency-injection-with-service-locator</id>
   <published>2017-03-03T00:00:00Z</published>
   <updated>2017-03-03T00:00:00Z</updated>
   <content type="html"><![CDATA[ <p>Here at <a href="http://welt.de">WeltN24</a>’s iOS team we like to test. We like it so much that we build our code to be <del>almost</del> 100% testable. We are able to achieve this by injecting all dependencies through each class’ initializer. One technic to do this is to make use of Swift’s default values.</p>
@@ -26,18 +88,17 @@
   <p>You can define a default value for any parameter in a function by assigning a value to the parameter after that parameter’s type. If a default value is defined, you can omit that parameter when calling the function.</p>
 </blockquote>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">hello</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Alex Salom"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">hello</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Alex Salom"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
   <span class="k">return</span> <span class="s">"Hello </span><span class="se">\(</span><span class="n">name</span><span class="se">)</span><span class="s">"</span>
 <span class="p">}</span>
 
 <span class="nf">hello</span><span class="p">()</span> <span class="c1">// Hello Alex Salom</span>
 <span class="nf">hello</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Nick Cave"</span><span class="p">)</span> <span class="c1">// Hello Nick Cave</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Let’s say that we have an object called <code class="highlighter-rouge">PeopleManager</code> who’s purpose is to, well, manage people. Let’s imagine that it can fetch people from the network and save people in a database. Since we like to follow the <a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">Single Responsibility Principle</a>, we want these two functionalities to be encapsulated in different objects, <code class="highlighter-rouge">Fetcher</code> and <code class="highlighter-rouge">Database</code>.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">Database</span> <span class="p">{</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">Database</span> <span class="p">{</span>
   <span class="kd">func</span> <span class="nf">save</span><span class="p">(</span><span class="nv">person</span><span class="p">:</span> <span class="kt">Person</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="kd">final</span> <span class="kd">class</span> <span class="kt">DatabaseImpl</span><span class="p">:</span> <span class="kt">Database</span> <span class="p">{</span> <span class="o">...</span><span class="err"> </span><span class="p">}</span>
@@ -47,12 +108,11 @@
 <span class="p">}</span>
 <span class="kd">final</span> <span class="kd">class</span> <span class="kt">FetcherImpl</span><span class="p">:</span> <span class="kt">Fetcher</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Using Swift’s default values we could inject those dependencies into <code class="highlighter-rouge">PeopleManager</code> like this:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">PeopleManager</span> <span class="p">{</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">PeopleManager</span> <span class="p">{</span>
   <span class="kd">private</span> <span class="k">let</span> <span class="nv">database</span><span class="p">:</span> <span class="kt">Database</span>
   <span class="kd">private</span> <span class="k">let</span> <span class="nv">fetcher</span><span class="p">:</span> <span class="kt">Fetcher</span>
 
@@ -70,14 +130,13 @@
     <span class="n">database</span><span class="o">.</span><span class="nf">save</span><span class="p">(</span><span class="nv">person</span><span class="p">:</span> <span class="n">person</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This is very nice as it allows us to initialize <code class="highlighter-rouge">PeopleManager</code> through its empty initializer from the production code <code class="highlighter-rouge">PeopleManager()</code> but giving us the possibility to inject mocked versions of the dependencies from the tests <code class="highlighter-rouge">PeopleManager(database: DatabaseMock(), fetcher: FetcherMock())</code>.</p>
 
 <p>However we did find one issue with this technic. When an object has quite a few dependencies, the initializer can get out of hands having long signatures. That’s why we came up with something called <code class="highlighter-rouge">ServiceLocator</code>. We can think of a <code class="highlighter-rouge">ServiceLocator</code> as a registry of dependencies for a given object. The idea is that each dependency will declare its own locator so other objects can find a way to initialize those dependencies. Let’s see an example with our <code class="highlighter-rouge">Database</code>.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">Database</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">Database</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
 <span class="kd">final</span> <span class="kd">class</span> <span class="kt">DatabaseImpl</span><span class="p">:</span> <span class="kt">Database</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
 
 <span class="kd">protocol</span> <span class="kt">DatabaseLocator</span> <span class="p">{</span>
@@ -89,12 +148,11 @@
     <span class="k">return</span> <span class="kt">DatabaseImpl</span><span class="p">()</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>We declared a protocol <code class="highlighter-rouge">DatabaseLocator</code> with a function that will provide us with an instance of <code class="highlighter-rouge">Database</code>. We also declared a protocol extension with a default implementation of that function. Now imagine we did the same for <code class="highlighter-rouge">Fetcher</code> and we now have a <code class="highlighter-rouge">FetcherLocator</code> as well as a <code class="highlighter-rouge">DatabaseLocator</code>. With those in place let’s revisit <code class="highlighter-rouge">PeopleManger</code>’s dependency injection.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">PeopleManager</span> <span class="p">{</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">PeopleManager</span> <span class="p">{</span>
   <span class="kd">typealias</span> <span class="kt">ServiceLocator</span> <span class="o">=</span> <span class="kt">DatabaseLocator</span> <span class="o">&amp;</span> <span class="kt">FetcherLocator</span>
   <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ServiceLocatorImpl</span><span class="p">:</span> <span class="kt">ServiceLocator</span> <span class="p">{}</span>
 
@@ -115,23 +173,22 @@
     <span class="n">database</span><span class="o">.</span><span class="nf">save</span><span class="p">(</span><span class="nv">person</span><span class="p">:</span> <span class="n">person</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>We start by declaring a <code class="highlighter-rouge">typealias ServiceLocator</code> with all the dependencies of this class. This is very convenient because only by looking at this line we see all the objects <code class="highlighter-rouge">PeopleManager</code> depends on. We then inject the <code class="highlighter-rouge">ServiceLocator</code> into the initializer <code class="highlighter-rouge">init(serviceLocator: ServiceLocator = ServiceLocatorImpl())</code> using a default value of <code class="highlighter-rouge">ServiceLocatorImpl</code>.
 <code class="highlighter-rouge">ServiceLocatorImpl</code> doesn’t need to provide any implementation because each one of the Locators have provided an extension to every method they declare. We just found a way to inject as many dependencies as we want by declaring only one variable at <code class="highlighter-rouge">PeopleManager</code>’s initializer. Since all the dependencies use protocols and the locators are protocols themselves we could now build our own version of ServiceLocator that returns mocked objects and inject those from the tests.</p>
 
 <p>Schönes Wochenende!</p>
 
-<p><a href="https://github.com/asalom/alexsalom.es/tree/master/_code/2017-03-03-dependency-injection-with-service-locator">Get the code here</a>.</p>
+<p><a href="https://github.com/asalom/alexsalom.es/tree/master/_code/2017-03-03-dependency-injection-with-service-locator">Get the code here</a></p>
  ]]></content>
 </entry>
 
 
   <entry>
   <title type="text">Swap out your App Delegate for testing</title>
-  <link rel="alternate" type="text/html" href="/2016/03/10/swap-out-your-appdelegate-for-testing/" />
-  <id>/2016/03/10/swap-out-your-appdelegate-for-testing</id>
+  <link rel="alternate" type="text/html" href="http://localhost:3000/2016/03/10/swap-out-your-appdelegate-for-testing/" />
+  <id>http://localhost:3000/2016/03/10/swap-out-your-appdelegate-for-testing</id>
   <published>2016-03-10T00:00:00Z</published>
   <updated>2016-03-10T00:00:00Z</updated>
   <content type="html"><![CDATA[ <p>The best thing about unit testing is the ability to know if our production code works as expected without having to tap around in the Simulator. It is crucial that we receive this feedback fast so we can run the test suite as much as possible. That is even more important when we are practicing <strong>TDD</strong>.</p>
@@ -146,12 +203,11 @@
 <h3 id="changing-the-app-delegate">Changing the App Delegate</h3>
 <p>First head to your <strong>AppDelegate.swift</strong> file. You’ll notice that there is an attribute <code class="highlighter-rouge">@UIApplicationMain</code> which you’ll need to <strong>delete</strong>.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">@UIApplicationMain</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@UIApplicationMain</span>
 <span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
   <span class="c1">// Many expensive tasks</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><br /></p>
 
@@ -164,7 +220,7 @@ If you do not use this attribute, supply a main.swift file with a main() functio
 
 <p>Next step is to add a new file and name it <code class="highlighter-rouge">main.swift</code>. This will give us a way to inject our <em>fake</em>.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">FakeAppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">FakeAppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
   <span class="k">var</span> <span class="nv">window</span><span class="p">:</span> <span class="kt">UIWindow</span><span class="p">?</span>
 
   <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span>
@@ -183,8 +239,7 @@ If you do not use this attribute, supply a main.swift file with a main() functio
   <span class="kt">UIApplicationMain</span><span class="p">(</span><span class="kt">Process</span><span class="o">.</span><span class="n">argc</span><span class="p">,</span> <span class="kt">Process</span><span class="o">.</span><span class="n">unsafeArgv</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="kt">NSStringFromClass</span><span class="p">(</span><span class="kt">AppDelegate</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><br /></p>
 
@@ -197,8 +252,8 @@ If you do not use this attribute, supply a main.swift file with a main() functio
 
   <entry>
   <title type="text">Who am I?</title>
-  <link rel="alternate" type="text/html" href="/2016/03/06/who-am-i/" />
-  <id>/2016/03/06/who-am-i</id>
+  <link rel="alternate" type="text/html" href="http://localhost:3000/2016/03/06/who-am-i/" />
+  <id>http://localhost:3000/2016/03/06/who-am-i</id>
   <published>2016-03-06T00:00:00Z</published>
   <updated>2016-03-06T00:00:00Z</updated>
   <content type="html"><![CDATA[ <p>My name is Alex Salom and I currently serve as an iOS Engineer at <strong>WeltN24 GmbH</strong> in Berlin, Germany.</p>
@@ -212,7 +267,7 @@ What you are seeing now is the awesome <a href="https://jekyllrb.com/">Jekyll</a
 
 <p>What should you expect from this site? Swift, iOS, tech stuff -books included-, code, maybe some music too… just the mumbles you would hear if you were working next to me.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">Person</span> <span class="p">{</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">Person</span> <span class="p">{</span>
   <span class="kd">func</span> <span class="nf">who</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s">"Alex Salom"</span>
   <span class="p">}</span>
@@ -223,8 +278,7 @@ What you are seeing now is the awesome <a href="https://jekyllrb.com/">Jekyll</a
     <span class="k">return</span> <span class="p">[</span><span class="s">"code"</span><span class="p">,</span> <span class="s">"music"</span><span class="p">,</span> <span class="s">"ci"</span><span class="p">,</span> <span class="s">"ios"</span><span class="p">]</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="welcome">Welcome</h2>
  ]]></content>

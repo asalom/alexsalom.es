@@ -7,13 +7,15 @@
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Alex Salom" />
   <meta name="keywords" content="ios, engineer, developer, tech, tdd, unit testing, code, clean code" />
-  <!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Swap out your App Delegate for testing - a dev’s journal</title>
+  <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>Swap out your App Delegate for testing | a dev’s journal</title>
 <meta property="og:title" content="Swap out your App Delegate for testing" />
+<meta name="author" content="Alex Salom" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="The best thing about unit testing is the ability to know if our production code works as expected without having to tap around in the Simulator. It is crucial that we receive this feedback fast so we can run the test suite as much as possible. That is even more important when we are practicing TDD." />
 <meta property="og:description" content="The best thing about unit testing is the ability to know if our production code works as expected without having to tap around in the Simulator. It is crucial that we receive this feedback fast so we can run the test suite as much as possible. That is even more important when we are practicing TDD." />
-<link rel="canonical" href="/2016/03/10/swap-out-your-appdelegate-for-testing/" />
-<meta property="og:url" content="/2016/03/10/swap-out-your-appdelegate-for-testing/" />
+<link rel="canonical" href="http://localhost:3000/2016/03/10/swap-out-your-appdelegate-for-testing/" />
+<meta property="og:url" content="http://localhost:3000/2016/03/10/swap-out-your-appdelegate-for-testing/" />
 <meta property="og:site_name" content="a dev’s journal" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2016-03-10T00:00:00+01:00" />
@@ -21,15 +23,7 @@
 <meta name="twitter:site" content="@empatiia" />
 <meta name="twitter:creator" content="@Alex Salom" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "Swap out your App Delegate for testing",
-"datePublished": "2016-03-10T00:00:00+01:00",
-"description": "The best thing about unit testing is the ability to know if our production code works as expected without having to tap around in the Simulator. It is crucial that we receive this feedback fast so we can run the test suite as much as possible. That is even more important when we are practicing TDD.",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "/static/img/profile.jpg"}},
-"url": "/2016/03/10/swap-out-your-appdelegate-for-testing/"}</script>
+{"name":null,"description":"The best thing about unit testing is the ability to know if our production code works as expected without having to tap around in the Simulator. It is crucial that we receive this feedback fast so we can run the test suite as much as possible. That is even more important when we are practicing TDD.","author":{"@type":"Person","name":"Alex Salom"},"@type":"BlogPosting","url":"http://localhost:3000/2016/03/10/swap-out-your-appdelegate-for-testing/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:3000/static/img/profile.jpg"},"name":"Alex Salom"},"image":null,"headline":"Swap out your App Delegate for testing","dateModified":"2016-03-10T00:00:00+01:00","datePublished":"2016-03-10T00:00:00+01:00","sameAs":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:3000/2016/03/10/swap-out-your-appdelegate-for-testing/"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -145,12 +139,11 @@
 <h3 id="changing-the-app-delegate">Changing the App Delegate</h3>
 <p>First head to your <strong>AppDelegate.swift</strong> file. You’ll notice that there is an attribute <code class="highlighter-rouge">@UIApplicationMain</code> which you’ll need to <strong>delete</strong>.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">@UIApplicationMain</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@UIApplicationMain</span>
 <span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
   <span class="c1">// Many expensive tasks</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><br /></p>
 
@@ -163,7 +156,7 @@ If you do not use this attribute, supply a main.swift file with a main() functio
 
 <p>Next step is to add a new file and name it <code class="highlighter-rouge">main.swift</code>. This will give us a way to inject our <em>fake</em>.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">FakeAppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">FakeAppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
   <span class="k">var</span> <span class="nv">window</span><span class="p">:</span> <span class="kt">UIWindow</span><span class="p">?</span>
 
   <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span>
@@ -182,8 +175,7 @@ If you do not use this attribute, supply a main.swift file with a main() functio
   <span class="kt">UIApplicationMain</span><span class="p">(</span><span class="kt">Process</span><span class="o">.</span><span class="n">argc</span><span class="p">,</span> <span class="kt">Process</span><span class="o">.</span><span class="n">unsafeArgv</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span>
     <span class="kt">NSStringFromClass</span><span class="p">(</span><span class="kt">AppDelegate</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><br /></p>
 
@@ -195,6 +187,19 @@ If you do not use this attribute, supply a main.swift file with a main() functio
 			   <div class="related-posts">
 				   <h5>Related Posts</h5>
 				   
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	September 29, 2017
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/2017/09/29/localize+strings+extension/">Localize strings more beautifully with an extension</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
 						<div class="row">
 							 <div class="col-sm-4 col-md-4 col-lg-4">
 								 <h6 style="text-align: right">
@@ -231,7 +236,7 @@ If you do not use this attribute, supply a main.swift file with a main() functio
 	<script type="text/javascript">
       var disqus_shortname = 'alexsalom';
 			var disqus_identifier = '/2016/03/10/swap-out-your-appdelegate-for-testing/';
-      var disqus_url = '/2016/03/10/swap-out-your-appdelegate-for-testing/';
+      var disqus_url = 'http://localhost:3000/2016/03/10/swap-out-your-appdelegate-for-testing/';
       /* * * DON'T EDIT BELOW THIS LINE * * */
       (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
