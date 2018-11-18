@@ -91,7 +91,13 @@ body {
   width: auto;
   max-width: 800px;
   text-align: center;
+  font-size: 18px;
 }
+
+.about-text {
+  text-align: left;
+}
+
 .container .text-muted {
   margin: 20px 0;
 }

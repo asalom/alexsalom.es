@@ -6,18 +6,24 @@ title: About
 <section id="about">
 	<div class="container">
 	  <div class="avatar">
-	  	<a href="http://twitter.com/{{ site.twitter.username }}">
+	  	<a href="https://www.alexsalom.es/">
 			<img class="img-circle" src="{{ site.baseurl }}/static/img/{{ site.avatar }}" alt="Responsive image">
-			<h2>@{{ site.twitter.username }}</h2>
+			<h1>Alex Salom</h1>
+			<h2>Freelance iOS Developer</h2>
 		</a>
 	  </div>
-	  <hr/>
-	  <h3>I'm <strong>{{ site.author }}</strong>, a Freelance iOS Developer.</h3>
-	  <h3>I talk <strong>Swift</strong> and <strong>Objective-C</strong>. <strong>iOS</strong> is my passion.</h3>
-	  <h3>I love designing, setting up and maintaining <strong>Continuous Integration</strong> and <strong>Continuous Delivery</strong> systems.</h3>
-	  <h3>I will understand you in <strong>English</strong>, <strong>Spanish</strong> and <strong>Catalan</strong>.</h3>
-	  <h3><strike>Probably</strike> auch auf <strong>Deutsch</strong>.</h3>
-	  <h3>Have a look at some of the <a href="{{ site.baseurl }}/projects"> projects</a> I worked in.</h3>
-	  {% include social.html %}
+		<hr/>
+		<div class="about-text">
+			<p>I'm <strong>{{ site.author }}</strong>, a Freelance iOS Developer.</p>
+			<p>I talk <strong>Swift</strong>, <strong>Objective-C</strong> and some <strong>Ruby</strong>. iOS is my passion.</p>
+			<p>I love designing and maintaining <strong>Continuous Integration</strong> and <strong>Continuous Delivery</strong> systems.</p>
+			<p>I have experience with <strong>AWS</strong>.</p>
+			<p>I will understand you in <strong>English</strong>, <strong>Spanish</strong> and <strong>Catalan</strong>.</p>
+			<p><strike>Probably</strike> auch auf <strong>Deutsch</strong>.</p>
+			<p>Have a look at some of the <a href="{{ site.baseurl }}/projects"> projects</a> I worked in.</p>
+		</div>
+		<hr/>
+		<p>Get in touch:</p>
+		{% include social.html %}
 	</div>
 </section>
