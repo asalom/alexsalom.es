@@ -11,6 +11,7 @@ paginate_path: "/:num/"
 plugins:
   - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-redirect-from
 port: 3000
 permalink: pretty
 #safe: true
