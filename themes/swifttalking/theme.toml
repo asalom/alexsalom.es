@@ -1,0 +1,6 @@
+name = "Swift Talking"
+description = "Custom theme inspired by swifttalking.com"
+min_version = "0.100.0"
+
+[author]
+  name = "Alex Salom"

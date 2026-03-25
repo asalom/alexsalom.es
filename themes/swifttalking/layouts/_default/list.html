@@ -1,0 +1,7 @@
+{{ define "main" }}
+<div class="post-list">
+  {{ range where .Site.RegularPages "Section" "posts" }}
+    {{ partial "post-card.html" . }}
+  {{ end }}
+</div>
+{{ end }}
