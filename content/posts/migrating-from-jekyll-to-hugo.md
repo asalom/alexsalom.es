@@ -29,6 +29,14 @@ One thing I cared about was not breaking existing links. The old swifttalking.co
 
 The old blog used [Utterances](https://utteranc.es/) for comments, which stores them as GitHub Issues. I switched to [Giscus](https://giscus.app/) which uses GitHub Discussions instead. Setup was straightforward: enable Discussions on the repo, create a "Comments" category, and drop the script tag into the post template. All the config lives in `hugo.toml` and gets injected via a Hugo partial.
 
+## Migrating comments from Utterances to Giscus
+
+Utterances stores comments as GitHub Issues. Giscus uses GitHub Discussions. They are different systems so existing comments don't carry over automatically.
+
+To migrate them I used the GitHub GraphQL API via the `gh` CLI. First I listed all issues on the old swifttalking.com repo that had comments. Then for each one I created a matching Discussion on the alexsalom.es repo and replayed every comment in chronological order, preserving the original author attribution and date in the comment body.
+
+One gotcha: Giscus matches a blog post to its discussion using a configurable mapping. I used `og:title`, which matches the `og:title` meta tag against the discussion title. This keeps discussion titles human-readable while avoiding mismatches with the full `<title>` tag (which includes the site name).
+
 ## Automatic deploys
 
 A `netlify.toml` at the root of the repo tells Netlify everything it needs. Every push to `master` triggers a build. The site is live in seconds.
