@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="page page--me">
+  <div class="me-header">
+    {{ with .Site.Params.profileImage }}
+      <img class="avatar" src="{{ . | relURL }}" alt="{{ $.Site.Title }}">
+    {{ end }}
+    <h1>{{ .Site.Title }}</h1>
+    <h2>iOS Engineer · Berlin, Germany</h2>
+  </div>
+  <div class="me-content">
+    {{ .Content }}
+  </div>
+  <div class="social-links social-links--me">
+    <p class="get-in-touch">Get in touch</p>
+    {{ with .Site.Params.github }}
+      <a href="https://github.com/{{ . }}" target="_blank" rel="noopener"><i class="fa fa-github"></i> GitHub</a>
+    {{ end }}
+    {{ with .Site.Params.linkedin }}
+      <a href="https://www.linkedin.com/in/{{ . }}" target="_blank" rel="noopener"><i class="fa fa-linkedin"></i> LinkedIn</a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

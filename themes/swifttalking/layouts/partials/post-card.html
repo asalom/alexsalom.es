@@ -1,0 +1,10 @@
+<article class="post-card">
+  <a href="{{ .RelPermalink }}">
+    <h2 class="post-card__title">{{ .Title }}</h2>
+    <p class="post-card__excerpt">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}</p>
+    <div class="post-card__meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+      <span class="reading-time">· {{ math.Round (div (countwords .Content) 200.0) }} min read</span>
+    </div>
+  </a>
+</article>

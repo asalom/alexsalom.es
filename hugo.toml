@@ -1,0 +1,59 @@
+baseURL = "https://alexsalom.es/"
+languageCode = "en-us"
+title = "Alex Salom"
+theme = "swifttalking"
+
+[params]
+  description = "Alex Salom's personal site — software engineering, DevOps, homelab, AI, and other technology topics."
+  author = "Alex Salom"
+  github = "asalom"
+  linkedin = "alexsalom"
+  profileImage = "/images/site/asalom.png"
+  favicon = "/images/favicon/favicon-32x32.png"
+
+  [params.giscus]
+    repo = "asalom/alexsalom.es"
+    repoId = "MDEwOlJlcG9zaXRvcnk4MjkzMDQ3Nw=="
+    category = "Comments"
+    categoryId = "DIC_kwDOBPFrLc4C5P9s"
+    mapping = "title"
+    strict = "0"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    inputPosition = "bottom"
+    theme = "light"
+    lang = "en"
+
+[permalinks]
+  posts = "/:contentbasename/"
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
+    codeFences = true
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[menu]
+  [[menu.main]]
+    name = "blog"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "me"
+    url = "/me/"
+    weight = 2
+  [[menu.main]]
+    name = "projects"
+    url = "/projects/"
+    weight = 3
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[outputFormats]
+  [outputFormats.RSS]
+    mediaType = "application/rss+xml"
+    baseName = "feed"

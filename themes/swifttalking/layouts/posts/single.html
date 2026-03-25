@@ -1,0 +1,15 @@
+{{ define "main" }}
+<article class="post">
+  <header class="post__header">
+    <h1 class="post__title">{{ .Title }}</h1>
+    <div class="post__meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      <span class="reading-time">· {{ math.Round (div (countwords .Content) 200.0) }} min read</span>
+    </div>
+  </header>
+  <div class="post__content">
+    {{ .Content }}
+  </div>
+  {{ partial "giscus.html" $ }}
+</article>
+{{ end }}
