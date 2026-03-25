@@ -55,7 +55,7 @@ layout: "projects"
 
 <div class="project">
   <h4><i class="fa fa-server"></i> Homelab</h4>
-  <p>Two Proxmox clusters I built and maintain, serving friends and family 24/7. Fully automated with GitOps deploys, SSO, SSL certificates, monitoring and alerting.</p>
+  <p>Two Proxmox clusters across separate physical locations running services for friends and family. SSO, automatic certificate management, GitOps deploys and secure local and remote access to the full infrastructure.</p>
 </div>
 
 <div class="project">
