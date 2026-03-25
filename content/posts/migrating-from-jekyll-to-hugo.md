@@ -31,18 +31,7 @@ The old blog used [Utterances](https://utteranc.es/) for comments, which stores 
 
 ## Automatic deploys
 
-A `netlify.toml` at the root of the repo tells Netlify everything it needs:
-
-```toml
-[build]
-  publish = "public"
-  command = "hugo --minify"
-
-[build.environment]
-  HUGO_VERSION = "0.159.0"
-```
-
-Every push to `master` triggers a build. The site is live in seconds.
+A `netlify.toml` at the root of the repo tells Netlify everything it needs. Every push to `master` triggers a build. The site is live in seconds.
 
 ## The result
 
